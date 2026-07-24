@@ -1,0 +1,223 @@
+:root {
+  --clinical-blue: #1a5f7a;
+  --clinical-blue-dark: #123f52;
+  --clinical-bg: #f4f7f8;
+  --panel-bg: #ffffff;
+  --border-color: #d7dfe2;
+  --text-primary: #1c2b2f;
+  --text-secondary: #5a6b6f;
+  --amber: #f5a623;
+  --amber-bg: #fff6e5;
+  --error-red: #c0392b;
+  --recording-red: #d64545;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--clinical-bg);
+  color: var(--text-primary);
+}
+
+.app-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.25rem;
+  color: var(--clinical-blue-dark);
+  font-size: 1.75rem;
+}
+
+.app-subtitle {
+  margin: 0 0 2rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.input-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--clinical-blue-dark);
+}
+
+.panel--next-step {
+  opacity: 0.85;
+}
+
+.next-step-note {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.recorder-panel {
+  margin-bottom: 1rem;
+}
+
+.recorder-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.recording-indicator {
+  color: var(--recording-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.recorder-hint {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+}
+
+.recorder-error {
+  color: var(--error-red);
+  font-size: 0.85rem;
+}
+
+.recorder-panel--unsupported {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+}
+
+.recorder-fallback-message {
+  margin: 0;
+  color: #8a5a00;
+  font-size: 0.9rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider span {
+  padding: 0 0.75rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.transcript-textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  direction: auto;
+}
+
+.transcript-textarea:focus {
+  outline: 2px solid var(--clinical-blue);
+  outline-offset: 1px;
+}
+
+.transcript-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.sample-loader {
+  margin-top: 1.25rem;
+}
+
+.sample-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.btn-primary {
+  background: var(--clinical-blue);
+  color: white;
+}
+
+.btn-primary:not(:disabled):hover {
+  background: var(--clinical-blue-dark);
+}
+
+.btn-recording {
+  background: var(--recording-red);
+  color: white;
+}
+
+.btn-secondary {
+  background: white;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-secondary:not(:disabled):hover {
+  border-color: var(--clinical-blue);
+  color: var(--clinical-blue-dark);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--clinical-blue);
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.8rem;
+}
