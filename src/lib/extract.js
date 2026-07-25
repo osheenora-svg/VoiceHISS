@@ -1,4 +1,5 @@
-import { callAnthropic } from './anthropicClient.js';
+import { callAnthropic, hasApiKey } from './anthropicClient.js';
+import { OFFLINE_EXTRACTIONS, matchOfflineSample } from '../data/offlineExtractions.js';
 
 /**
  * Builds the system prompt sent to the extraction model.
@@ -101,10 +102,34 @@ function stripCodeFences(text) {
  * Full pipeline: transcript -> Anthropic call -> defensively parsed result.
  * Never throws; always resolves to { status: 'ok', data } or
  * { status: 'error', message, raw? }.
+ *
+ * Offline fallback: when no API key is configured (hasApiKey() === false),
+ * this never calls the network. Instead, if `transcript` matches one of the
+ * 3 bundled sample transcripts exactly (via `offlineSampleTexts`, injected
+ * by the caller — see ExtractionPanel.jsx), it returns hand-written canned
+ * data for that sample so the whole workflow can be demoed offline. If the
+ * transcript doesn't match a known sample, it returns a clear error instead
+ * of guessing. The live API branch below is completely unchanged from
+ * before this fallback was added.
  */
-export async function runExtraction({ transcript, schemaJsonText }) {
+export async function runExtraction({ transcript, schemaJsonText, offlineSampleTexts }) {
   if (!transcript || transcript.trim().length === 0) {
     return { status: 'error', message: 'Transcript is empty — nothing to extract.' };
+  }
+
+  if (!hasApiKey()) {
+    const matchedId = matchOfflineSample(transcript, offlineSampleTexts);
+    if (matchedId && OFFLINE_EXTRACTIONS[matchedId]) {
+      const data = OFFLINE_EXTRACTIONS[matchedId];
+      return { status: 'ok', data, raw: JSON.stringify(data, null, 2), offline: true, offlineSampleId: matchedId };
+    }
+    return {
+      status: 'error',
+      message:
+        'No API key configured, and this transcript doesn\'t match one of the 3 bundled offline samples. ' +
+        'Load "Sample 1", "Sample 2", or "Sample 3" to see the offline demo, or set VITE_ANTHROPIC_API_KEY to extract from any transcript.',
+      raw: null
+    };
   }
 
   const system = buildSystemPrompt(schemaJsonText);

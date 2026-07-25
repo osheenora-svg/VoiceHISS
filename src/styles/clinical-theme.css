@@ -256,6 +256,22 @@ body {
   color: var(--text-secondary);
 }
 
+.offline-banner {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.85rem;
+  color: #8a5a00;
+  margin: 0.5rem 0;
+}
+
+.offline-banner--result {
+  background: #e3f4e8;
+  border-color: #1e7a3d;
+  color: #1e7a3d;
+}
+
 .extraction-result {
   margin-top: 1.25rem;
   display: flex;
@@ -534,4 +550,150 @@ body {
   .medication-row {
     grid-template-columns: 1fr;
   }
+}
+
+/* --- Completeness meter --- */
+
+.completeness-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: #f6f8f8;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+
+.completeness-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 42px;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+}
+
+.completeness-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.completeness-bar-track {
+  background: #e2e8e9;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.completeness-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.completeness-bar-fill--ai {
+  background: #9db4bb;
+}
+
+.completeness-bar-fill--review {
+  background: var(--clinical-blue);
+}
+
+.completeness-pct {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* --- Committed records + audit trail --- */
+
+.committed-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.committed-scope-note {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  margin: 0;
+}
+
+.committed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.committed-record {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.committed-record-header {
+  width: 100%;
+  text-align: left;
+  background: #f6f8f8;
+  border: none;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: inherit;
+}
+
+.committed-record-header:hover {
+  background: #edf2f3;
+}
+
+.committed-record-summary {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.committed-record-meta {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.committed-record-toggle {
+  font-size: 0.78rem;
+  color: var(--clinical-blue);
+  font-weight: 600;
+}
+
+.committed-record-actions {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.audit-trail {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.audit-section h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.audit-timestamps {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.audit-transcript {
+  white-space: pre-wrap;
+  direction: auto;
 }

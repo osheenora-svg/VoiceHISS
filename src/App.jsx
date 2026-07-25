@@ -4,10 +4,28 @@ import PasteTranscript from './components/input/PasteTranscript.jsx';
 import SampleLoader from './components/input/SampleLoader.jsx';
 import ExtractionPanel from './components/extract/ExtractionPanel.jsx';
 import ReviewForm from './components/review/ReviewForm.jsx';
+import CommittedList from './components/committed/CommittedList.jsx';
 
 export default function App() {
   const [transcript, setTranscript] = useState('');
   const [draft, setDraft] = useState(null);
+  const [extractedAt, setExtractedAt] = useState(null);
+  const [committedRecords, setCommittedRecords] = useState([]);
+
+  function handleExtracted(data, timestamp) {
+    setDraft(data);
+    setExtractedAt(timestamp);
+  }
+
+  function handleCommit(record) {
+    setCommittedRecords((prev) => [record, ...prev]);
+  }
+
+  function handleStartNew() {
+    setTranscript('');
+    setDraft(null);
+    setExtractedAt(null);
+  }
 
   return (
     <div className="app-shell">
@@ -33,9 +51,20 @@ export default function App() {
           <SampleLoader onLoad={setTranscript} disabled={false} />
         </section>
 
-        <ExtractionPanel transcript={transcript} onExtracted={setDraft} />
+        <ExtractionPanel transcript={transcript} onExtracted={handleExtracted} />
 
-        {draft && <ReviewForm key={JSON.stringify(draft)} draft={draft} />}
+        {draft && (
+          <ReviewForm
+            key={JSON.stringify(draft)}
+            draft={draft}
+            extractedAt={extractedAt}
+            transcript={transcript}
+            onCommit={handleCommit}
+            onStartNew={handleStartNew}
+          />
+        )}
+
+        <CommittedList records={committedRecords} />
       </main>
     </div>
   );

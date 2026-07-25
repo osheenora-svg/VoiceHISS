@@ -35,6 +35,13 @@ function resolveApiKey() {
   return viteKey || nodeKey;
 }
 
+/** True if an API key is configured in either environment. Used to decide
+ * whether to take the live path (unchanged) or the offline-sample fallback,
+ * without ever making a network call just to find out. */
+export function hasApiKey() {
+  return Boolean(resolveApiKey());
+}
+
 export async function callAnthropic({ system, userMessage }) {
   const apiKey = resolveApiKey();
 
