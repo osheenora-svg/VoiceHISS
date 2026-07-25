@@ -221,3 +221,132 @@ body {
   padding: 0;
   font-size: 0.8rem;
 }
+
+/* --- Extraction panel --- */
+
+.extract-error {
+  margin-top: 1rem;
+  background: #fdecea;
+  border: 1px solid var(--error-red);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+}
+
+.extract-error-message {
+  margin: 0 0 0.5rem;
+  color: var(--error-red);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.raw-response {
+  background: #f6f8f8;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.raw-response-details {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.extraction-result {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.extract-field-row {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.extract-field-row--block {
+  grid-template-columns: 160px 1fr;
+}
+
+.extract-field-row--empty {
+  background: var(--amber-bg);
+}
+
+.extract-field-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.extract-field-value {
+  word-break: break-word;
+  direction: auto;
+}
+
+.extract-empty-note {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.confidence-badge {
+  justify-self: end;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.confidence-high {
+  background: #e3f4e8;
+  color: #1e7a3d;
+}
+
+.confidence-medium {
+  background: var(--amber-bg);
+  color: #8a5a00;
+}
+
+.confidence-low {
+  background: #fdecea;
+  color: var(--error-red);
+}
+
+.confidence-null {
+  background: #eceff0;
+  color: var(--text-secondary);
+}
+
+.icd10-candidate-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.medication-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.medication-list li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9rem;
+}

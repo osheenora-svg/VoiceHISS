@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RecorderPanel from './components/input/RecorderPanel.jsx';
 import PasteTranscript from './components/input/PasteTranscript.jsx';
 import SampleLoader from './components/input/SampleLoader.jsx';
+import ExtractionPanel from './components/extract/ExtractionPanel.jsx';
 
 export default function App() {
   const [transcript, setTranscript] = useState('');
@@ -30,16 +31,7 @@ export default function App() {
           <SampleLoader onLoad={setTranscript} disabled={false} />
         </section>
 
-        <section className="panel panel--next-step">
-          <h2>2. Extract</h2>
-          <p className="next-step-note">
-            Sends the transcript to the extraction step (schema-matched JSON with
-            per-field confidence) — implemented next.
-          </p>
-          <button type="button" className="btn btn-primary" disabled title="Coming in the next build step">
-            Extract →
-          </button>
-        </section>
+        <ExtractionPanel transcript={transcript} />
       </main>
     </div>
   );
